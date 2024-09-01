@@ -1,6 +1,7 @@
 # Ignore .firebase directory
 .firebase/
 .vscode/
+firebase-debug.log
 node_modules/
 package-lock.json
 package.json
