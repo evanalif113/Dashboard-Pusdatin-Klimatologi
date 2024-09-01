@@ -1,0 +1,6 @@
+# Ignore .firebase directory
+.firebase/
+.vscode/
+node_modules/
+package-lock.json
+package.json
