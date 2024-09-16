@@ -57,7 +57,7 @@ html {
 
 /* The navbar */
 .topnav {
-  background-color: #fb8500;
+  background: linear-gradient(90deg, #fb8500, #007bff, #009519); /* Warna jingga, biru, dan hijau */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   color: #fff;
   overflow: hidden;
@@ -65,15 +65,16 @@ html {
   text-justify: auto;
   height: 60px;
   display: flex;
-  justify-content: left; /* Set justify-content ke left */
+  justify-content: left;
   align-items: center;
   padding: 0 20px;
   position: fixed;
   width: 100%;
   top: 0;
-  margin-top: 0; /* Set margin-top ke 0 */
-  left: 0; /* Set left ke 0 */
+  margin-top: 0;
+  left: 0;
 }
+
 
 /* Navbar links */
 .topnav a {
