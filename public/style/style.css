@@ -76,6 +76,26 @@ html {
   left: 0; /* Set left ke 0 */
 }
 
+/* Navbar links */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.active {
+  background-color: #0473aa;
+  color: white;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 .topnav .search-container {
   float: right;
 }
@@ -102,25 +122,6 @@ html {
   background: #ccc;
 }
 
-/* Navbar links */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a.active {
-  background-color: #0473aa;
-  color: white;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
 
 body {
   font-family: Arial, sans-serif;
