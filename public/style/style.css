@@ -65,10 +65,9 @@ html {
   text-justify: auto;
   height: 60px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: left; /* Set justify-content ke left */
+  align-items: auto;
   padding: 0 20px;
-  z-index: 1;
   position: fixed;
   width: 100%;
   top: 0;
