@@ -230,8 +230,7 @@ function plotTemperatureDewChart(timestamp, temperatures, dew) {
                         stepmode: 'backward'
                     },
                     { step: 'all' }
-                ]
-            },
+                ]},
             rangeslider: { visible: true }  // Menampilkan range slider
         },
         yaxis: {
