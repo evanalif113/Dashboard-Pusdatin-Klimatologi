@@ -12,30 +12,32 @@ const database = getDatabase(app);
 const dataRef = ref(database, 'auto_weather_stat/id-03/data');
 
 // Function to fetch the last 60 data entries
-function fetchLast60Data() {
+function fetchLastData() {
+    var hour = 6;
+    var fetchCount = hour * 60;
     // Query to get the last 60 data entries
-    const last60DataQuery = query(dataRef, limitToLast(60));
+    const lastDataQuery = query(dataRef, limitToLast(fetchCount));
 
-    onValue(last60DataQuery, (snapshot) => {
+    onValue(lastDataQuery, (snapshot) => {
         const data = snapshot.val();
         if (data) {
-            const timestamps = [];
-            const temperatures = [];
-            const humidity = [];
-            const pressure = [];
-            const dew = [];
+            var timestamps = [];
+            var temperatures = [];
+            var humidity = [];
+            var pressure = [];
+            var dew = [];
 
             Object.values(data).forEach(entry => {
-                timestamps.push(new Date(entry.timestamp * 1000).toLocaleTimeString());
+                timestamps.push(new Date(entry.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }));
                 temperatures.push(entry.temperature);
                 humidity.push(entry.humidity);
                 pressure.push(entry.pressure);
                 dew.push(entry.dew);
             });
 
-            // If we have more than 60 entries, slice to keep only the last 60
-            if (timestamps.length > 60) {
-                const startIndex = timestamps.length - 60;
+            // If we have more than fetchCount entries, slice to keep only the last fetchCount
+            if (timestamps.length > fetchCount) {
+                const startIndex = timestamps.length - fetchCount;
                 timestamps.splice(0, startIndex);
                 temperatures.splice(0, startIndex);
                 humidity.splice(0, startIndex);
@@ -47,6 +49,7 @@ function fetchLast60Data() {
             plotHumidityChart(timestamps, humidity);
             plotPressureChart(timestamps, pressure);
             plotDewChart(timestamps, dew);
+            // plotTemperatureDewChart(timestamps, temperatures, dew);
         }
     }, (error) => {
         console.error("Error reading data: ", error);
@@ -55,7 +58,7 @@ function fetchLast60Data() {
 
 // Function to plot temperature chart
 function plotTemperatureChart(timestamps, temperatures) {
-    const trace = {
+    var trace = {
         x: timestamps,
         y: temperatures,
         type: 'scatter',
@@ -64,9 +67,9 @@ function plotTemperatureChart(timestamps, temperatures) {
         line: { color: '#C70039' }
     };
 
-    const data = [trace];
+    var data = [trace];
 
-    const layout = {
+    var layout = {
         title: 'Suhu Lingkungan (°C)',
         xaxis: { title: 'Waktu' },
         yaxis: { title: 'Suhu Lingkungan (°C)' },
@@ -78,7 +81,7 @@ function plotTemperatureChart(timestamps, temperatures) {
 
 // Function to plot humidity chart
 function plotHumidityChart(timestamps, humidity) {
-    const trace = {
+    var trace = {
         x: timestamps,
         y: humidity,
         type: 'scatter',
@@ -87,11 +90,11 @@ function plotHumidityChart(timestamps, humidity) {
         line: { color: '006BFF' }
     };
 
-    const data = [trace];
+    var data = [trace];
 
-    const layout = {
+    var layout = {
         title: 'Kelembapan Relatif (%)',
-        xaxis: { title: 'Time' },
+        xaxis: { title: 'Waktu' },
         yaxis: { title: 'Kelembapan Relatif (%)' },
         height: 400
     };
@@ -101,7 +104,7 @@ function plotHumidityChart(timestamps, humidity) {
 
 // Function to plot humidity chart
 function plotDewChart(timestamps, dew) {
-    const trace = {
+    var trace = {
         x: timestamps,
         y: dew,
         type: 'scatter',
@@ -110,11 +113,11 @@ function plotDewChart(timestamps, dew) {
         line: { color: '4F75FF' }
     };
 
-    const data = [trace];
+    var data = [trace];
 
-    const layout = {
+    var layout = {
         title: 'Titik Embun (°C)',
-        xaxis: { title: 'Time' },
+        xaxis: { title: 'Waktu' },
         yaxis: { title: 'Titik Embun (°C)' },
         height: 400
     };
@@ -124,7 +127,7 @@ function plotDewChart(timestamps, dew) {
 
 // Function to plot pressure chart
 function plotPressureChart(timestamps, pressure) {
-    const trace = {
+    var trace = {
         x: timestamps,
         y: pressure,
         type: 'scatter',
@@ -133,11 +136,11 @@ function plotPressureChart(timestamps, pressure) {
         line: { color: '15B392' }
     };
 
-    const data = [trace];
+    var data = [trace];
 
-    const layout = {
+    var layout = {
         title: 'Tekanan Udara (hPa)',
-        xaxis: { title: 'Time' },
+        xaxis: { title: 'Waktu' },
         yaxis: { title: 'Tekanan Udara (hPa)' },
         height: 400
     };
@@ -145,6 +148,107 @@ function plotPressureChart(timestamps, pressure) {
     Plotly.newPlot('pressure-chart', data, layout);
 }
 
-// Fetch data initially and update every 15 seconds
-fetchLast60Data();
-setInterval(fetchLast60Data, 15000);
+// Function to fetch daily data entries (1440 data points)
+function fetchDataHarian() {
+    const jumlahData = 1440;  // 1 hari = 1440 data
+    const kueriTerakhir = query(dataRef, limitToLast(jumlahData));
+
+    onValue(kueriTerakhir, (snapshot) => {
+        const isi = snapshot.val();
+        if (isi) {
+            var timestamp = [];
+            var temperatures = [];
+            var dew = [];
+
+            Object.values(isi).forEach(entry => {
+                // Mengambil data sesuai struktur di Firebase (pastikan field benar)
+                if (entry.timestamp && entry.temperature !== undefined && entry.dew !== undefined) {
+                    timestamp.push(new Date(entry.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }));
+                    temperatures.push(entry.temperature);  // Field 'temperature' diambil dari Firebase
+                    dew.push(entry.dew);  // Field 'dew' diambil dari Firebase
+                }
+            });
+
+            // Jika lebih dari jumlahData, potong untuk menyimpan hanya jumlahData terakhir
+            if (timestamp.length > jumlahData) {
+                const startIndex = timestamp.length - jumlahData;
+                timestamp.splice(0, startIndex);
+                temperatures.splice(0, startIndex);
+                dew.splice(0, startIndex);
+            }
+
+            // Panggil fungsi plotting untuk data
+            plotTemperatureDewChart(timestamp, temperatures, dew);
+        } else {
+            console.warn("Tidak ada data yang tersedia.");
+        }
+    }, (error) => {
+        console.error("Error reading data: ", error);
+    });
+}
+
+// Function to plot temperature and dew point chart with slider
+function plotTemperatureDewChart(timestamp, temperatures, dew) {
+    var traceT = {
+        type: "scatter",
+        mode: "lines",
+        name: 'Suhu Lingkungan (°C)',
+        x: timestamp,  // Menggunakan timestamp sebagai sumbu X
+        y: temperatures,
+        line: { color: '#C70039' }
+    };
+
+    var traceD = {
+        type: "scatter",
+        mode: "lines",
+        name: 'Titik Embun (°C)',
+        x: timestamp,  // Menggunakan timestamp sebagai sumbu X
+        y: dew,
+        line: { color: '#4F75FF' }
+    };
+
+    var data = [traceT, traceD];
+
+    var layout = {
+        title: 'Suhu dan Titik Embun',
+        xaxis: {
+            title: 'Waktu',
+            autorange: true,
+            range: [timestamp[0], timestamp[timestamp.length - 1]],  // Mengatur range awal dan akhir dari timestamp
+            rangeselector: {
+                buttons: [
+                    {
+                        count: 15,
+                        label: '15m',
+                        step: 'minute',
+                        stepmode: 'backward'
+                    },
+                    {
+                        count: 30,
+                        label: '30m',
+                        step: 'minute',
+                        stepmode: 'backward'
+                    },
+                    { step: 'all' }
+                ]
+            },
+            rangeslider: { visible: true }  // Menampilkan range slider
+        },
+        yaxis: {
+            title: 'Perbandingan Suhu (°C)',
+            type: 'linear'
+        }
+    };
+
+    // Menggambar grafik ke elemen dengan ID 'timeseries-chart'
+    Plotly.newPlot('timeseries-chart', data, layout);
+}
+
+
+
+// Fetch data initially and update
+
+fetchLastData();
+fetchDataHarian();
+setInterval(fetchDataHarian, 15000);
+setInterval(fetchLastData, 15000);
