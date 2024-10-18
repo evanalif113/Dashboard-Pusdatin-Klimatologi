@@ -49,7 +49,6 @@ function fetchLastData() {
             plotHumidityChart(timestamps, humidity);
             plotPressureChart(timestamps, pressure);
             plotDewChart(timestamps, dew);
-            // plotTemperatureDewChart(timestamps, temperatures, dew);
         }
     }, (error) => {
         console.error("Error reading data: ", error);
@@ -249,5 +248,5 @@ function plotTemperatureDewChart(timestamp, temperatures, dew) {
 
 fetchLastData();
 fetchDataHarian();
-setInterval(fetchDataHarian, 15000);
-setInterval(fetchLastData, 15000);
+setInterval(fetchDataHarian, 60000);
+setInterval(fetchLastData, 60000);
