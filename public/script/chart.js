@@ -242,10 +242,7 @@ function plotTemperatureDewChart(timestamp, temperatures, dew) {
     Plotly.newPlot('timeseries-chart', data, layout);
 }
 
-
-
 // Fetch data initially and update
-
 fetchLastData();
 fetchDataHarian();
 setInterval(fetchDataHarian, 60000);
