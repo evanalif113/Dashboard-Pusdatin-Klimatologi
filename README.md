@@ -11,8 +11,9 @@ Pusat Data Iklim Jerukagung Seismologi is a web application designed to display 
 ## Features
 
 - Real-time climate data visualization using ThingSpeak.
-- Average calculations of climate data (temperature, humidity, air pressure).
+- Average calculations of climate data.
 - Dynamic charts and statistics for meteorological research.
+- Local Weather Analysis
 
 ## Technologies Used
 
