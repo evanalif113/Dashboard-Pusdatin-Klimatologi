@@ -141,7 +141,7 @@ function plotPressureChart(timestamps, pressure) {
 }
 
 // Function to fetch daily data (1440 entries) using jQuery Ajax
-function fetchDataHarian() {
+/*function fetchDataHarian() {
     const jumlahData = 1440;  // 1 hari = 1440 data
     var dataRef = `${databaseUrl}auto_weather_stat/${sensorId}/data.json?orderBy="$key"&limitToLast=${jumlahData}`;
 
@@ -171,67 +171,12 @@ function fetchDataHarian() {
             console.error("Error fetching data: ", error);
         }
     });
-}
-// Function to plot temperature and dew point chart with slider
-function plotTemperatureDewChart(timestamp, temperatures, dew) {
-    var traceT = {
-        type: "scatter",
-        mode: "lines",
-        name: 'Suhu Lingkungan (°C)',
-        x: timestamp,  // Menggunakan timestamp sebagai sumbu X
-        y: temperatures,
-        line: { color: '#C70039' }
-    };
-
-    var traceD = {
-        type: "scatter",
-        mode: "lines",
-        name: 'Titik Embun (°C)',
-        x: timestamp,  // Menggunakan timestamp sebagai sumbu X
-        y: dew,
-        line: { color: '#4F75FF' }
-    };
-
-    var data = [traceT, traceD];
-
-    var layout = {
-        title: 'Suhu dan Titik Embun',
-        xaxis: {
-            title: 'Waktu',
-            autorange: true,
-            range: [timestamp[0], timestamp[timestamp.length - 1]],  // Mengatur range awal dan akhir dari timestamp
-            rangeselector: {
-                buttons: [
-                    {
-                        count: 15,
-                        label: '15m',
-                        step: 'minute',
-                        stepmode: 'backward'
-                    },
-                    {
-                        count: 30,
-                        label: '30m',
-                        step: 'minute',
-                        stepmode: 'backward'
-                    },
-                    { step: 'all' }
-                ]},
-            rangeslider: { visible: true }  // Menampilkan range slider
-        },
-        yaxis: {
-            title: 'Perbandingan Suhu (°C)',
-            type: 'linear'
-        }
-    };
-
-    // Menggambar grafik ke elemen dengan ID 'timeseries-chart'
-    Plotly.newPlot('timeseries-chart', data, layout);
-}
+}*/
 
 // Fetch data initially and set intervals for every minute
 $(document).ready(function() {
     fetchLastData();
-    fetchDataHarian();
-    setInterval(fetchDataHarian, 60000);
+    //fetchDataHarian();
+    //setInterval(fetchDataHarian, 60000);
     setInterval(fetchLastData, 15000); 
 });
