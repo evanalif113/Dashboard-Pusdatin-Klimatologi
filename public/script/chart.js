@@ -13,7 +13,7 @@ const dataRef = ref(database, 'auto_weather_stat/id-03/data');
 
 // Function to fetch the last 60 data entries
 function fetchLastData() {
-    var hour = 6;
+    var hour = 3;
     var fetchCount = hour * 60;
     // Query to get the last 60 data entries
     const lastDataQuery = query(dataRef, limitToLast(fetchCount));
