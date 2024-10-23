@@ -10,7 +10,7 @@ const databaseUrl = "https://staklimjerukagung-default-rtdb.asia-southeast1.fire
 // ID sensor tetap sebagai id-03
 const sensorId = "id-03";
 
-// Maximum length for the data array (e.g., 30 latest data points)
+// Maximum length for the data array (e.g., 60 data points)
 var maxDataLength = 60;
 
 // Initialize empty arrays for storing data
@@ -22,7 +22,7 @@ var dew = [];
 
 // Function to fetch the last data using jQuery Ajax
 function fetchLastData() {
-    var hour = 3;
+    var hour = 1;
     var fetchCount = hour * 60;
     var dataRef = `${databaseUrl}auto_weather_stat/${sensorId}/data.json?orderBy="$key"&limitToLast=${fetchCount}`;
 
@@ -35,12 +35,12 @@ function fetchLastData() {
                     // Convert timestamp to formatted time
                     var timeFormatted = new Date(entry.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 
-                    // Add data to arrays and maintain maximum array length
-                    updateArray(timestamps, timeFormatted);
-                    updateArray(temperatures, entry.temperature);
-                    updateArray(humidity, entry.humidity);
-                    updateArray(pressure, entry.pressure);
-                    updateArray(dew, entry.dew);
+                    // Update arrays with new data (shift array when data exceeds max length)
+                    updateDataArray(timestamps, timeFormatted);
+                    updateDataArray(temperatures, entry.temperature);
+                    updateDataArray(humidity, entry.humidity);
+                    updateDataArray(pressure, entry.pressure);
+                    updateDataArray(dew, entry.dew);
                 });
 
                 // Update charts with the new data
@@ -55,12 +55,12 @@ function fetchLastData() {
     });
 }
 
-// Function to update data arrays
-function updateArray(array, value) {
-    array.push(value);
-    if (array.length > maxDataLength) {
-        array.shift(); // Remove the first element to maintain length
+// Function to update data arrays with a maximum length of 60
+function updateDataArray(array, newValue) {
+    if (array.length >= maxDataLength) {
+        array.shift();  // Remove the first element
     }
+    array.push(newValue);  // Add the new value at the end
 }
 
 // Function to plot temperature chart
@@ -105,27 +105,6 @@ function plotHumidityChart() {
     Plotly.newPlot('humidity-chart', [trace], layout);
 }
 
-// Function to plot pressure chart
-function plotPressureChart() {
-    var trace = {
-        x: timestamps,
-        y: pressure,
-        type: 'scatter',
-        mode: 'lines+markers',
-        name: 'Tekanan Udara (hPa)',
-        line: { color: '15B392' }
-    };
-
-    var layout = {
-        title: 'Tekanan Udara (hPa)',
-        xaxis: { title: 'Waktu' },
-        yaxis: { title: 'Tekanan Udara (hPa)' },
-        height: 400
-    };
-
-    Plotly.newPlot('pressure-chart', [trace], layout);
-}
-
 // Function to plot dew point chart
 function plotDewChart() {
     var trace = {
@@ -147,18 +126,51 @@ function plotDewChart() {
     Plotly.newPlot('dew-chart', [trace], layout);
 }
 
+// Function to plot pressure chart
+function plotPressureChart() {
+    var trace = {
+        x: timestamps,
+        y: pressure,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'Tekanan Udara (hPa)',
+        line: { color: '15B392' }
+    };
+
+    var layout = {
+        title: 'Tekanan Udara (hPa)',
+        xaxis: { title: 'Waktu' },
+        yaxis: { title: 'Tekanan Udara (hPa)' },
+        height: 400
+    };
+
+    Plotly.newPlot('pressure-chart', [trace], layout);
+}
+
 // Function to update charts dynamically
 function updateCharts() {
-    var data_update_temp = { x: [timestamps], y: [temperatures] };
+    var data_update_temp = { 
+        x: [timestamps], 
+        y: [temperatures] 
+    };
     Plotly.update('temperature-chart', data_update_temp);
 
-    var data_update_humid = { x: [timestamps], y: [humidity] };
+    var data_update_humid = { 
+        x: [timestamps], 
+        y: [humidity] 
+    };
     Plotly.update('humidity-chart', data_update_humid);
 
-    var data_update_press = { x: [timestamps], y: [pressure] };
+    var data_update_press = { 
+        x: [timestamps], 
+        y: [pressure] 
+    };
     Plotly.update('pressure-chart', data_update_press);
 
-    var data_update_dew = { x: [timestamps], y: [dew] };
+    var data_update_dew = { 
+        x: [timestamps], 
+        y: [dew] 
+    };
     Plotly.update('dew-chart', data_update_dew);
 }
 
