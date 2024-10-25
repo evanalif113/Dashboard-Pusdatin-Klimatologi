@@ -6,4 +6,3 @@ node_modules/
 package-lock.json
 package.json
 public/script/fireconfig.js
-public/script/auth-code.js
