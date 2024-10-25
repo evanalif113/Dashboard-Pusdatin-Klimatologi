@@ -1,8 +1,8 @@
 html {
   scroll-behavior: smooth;
   user-select: none; /* Standard syntax */
-  
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -10,17 +10,17 @@ html {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #0065b8; 
+  background: #0065b8;
 }
 
 .mainpage {
@@ -48,11 +48,6 @@ html {
   color: #f1f1f1;
 }
 
-/* Position the navbar container inside the image */
-.container {
-  position: sticky top left;
-  width: auto;
-}
 
 /* The navbar */
 .topnav {
@@ -72,6 +67,15 @@ html {
   top: 0;
   left: 0;
 }
+
+/* Logo styling */
+.topnav .logo {
+  height: 50px; /* Sesuaikan tinggi logo */
+  margin-left: auto; /* Mengatur margin kiri otomatis untuk memindahkan logo ke kanan */
+  margin-right: 20px; /* Jarak antara logo dan tepi navbar */
+  align-self: center; /* Menjaga logo agar berada di tengah vertikal navbar */
+}
+
 
 
 /* Navbar links */
@@ -93,7 +97,6 @@ html {
   background-color: #ddd;
   color: black;
 }
-
 
 .topnav input[type=text] {
   padding: 6px;
@@ -192,9 +195,6 @@ iframe {
   color: #333;
 }
 
-
-
-
 footer {
   text-align: center;
   padding: 50px;
@@ -202,4 +202,91 @@ footer {
   background-size: cover;
   background-position: 0px;
   color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .topnav {
+    font-size: 20px;
+    height: 50px;
+    padding: 0 16px;
+  }
+
+  .topnav .logo {
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .topnav a {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  body {
+    margin-top: 50px;
+  }
+
+  .mainpage {
+    padding: 150px;
+  }
+
+  .mainpagetext {
+    font-size: 2em;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .iframe-container {
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topnav {
+    font-size: 18px;
+    height: 40px;
+    padding: 0 10px;
+  }
+
+  .topnav .logo {
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  .topnav a {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  body {
+    margin-top: 40px;
+  }
+
+  .mainpage {
+    padding: 100px;
+  }
+
+  .mainpagetext {
+    font-size: 1.5em;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .iframe-container {
+    flex-direction: column;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
 }
