@@ -51,7 +51,7 @@ html {
 
 /* The navbar */
 .topnav {
-  background: linear-gradient(90deg, #fb8500, #007bff, #009519); /* Warna jingga, biru, dan hijau */
+  background: linear-gradient(90deg, #004D9D, #F7A500,#73B842, #04A9D2);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
   color: #fff;
   overflow: hidden;
