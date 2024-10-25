@@ -24,7 +24,7 @@
       <div class="container">
         <div class="topnav">
           <a class="active">Home</a>
-          <a href="./404.html">Research</a>
+          <a href="./research.html">Research</a>
           <a href="#" id="dataLink">Data</a>
           <a href="./team.html">Our Team</a>
           <a href="./contact.html">Contact</a>
@@ -35,69 +35,75 @@
       <p class="mainpagetext">Penelitian dan Pengembangan Stasiun Iklim Jerukagung Seismologi</p>
     </div>
     <!-- Pop-up Login -->
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Login</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button id="loginBtn">Login</button>
-        <p id="error-message" style="color: red;"></p>
+          <!-- Modal Bootstrap -->
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+              <p id="error-message" class="text-danger"></p>
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="loginBtn">Login</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
     <script type="module">
-      import { loginUser } from './script/auth.js';
+        import { loginUser } from './script/auth.js';
 
-      // Check if the user is logged in
-      let isLoggedIn = false;
+        // Check if the user is logged in
+        let isLoggedIn = false;
 
-      // Get modal elements
-      var modal = document.getElementById("loginModal");
-      var closeModal = document.getElementsByClassName("close")[0];
-      var loginBtn = document.getElementById("loginBtn");
-      var errorMessage = document.getElementById("error-message");
+        // Get modal elements using Bootstrap modal component
+        var loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
+        var loginBtn = document.getElementById("loginBtn");
+        var errorMessage = document.getElementById("error-message");
 
-      // Handle the "Data" link click event
-      document.getElementById("dataLink").addEventListener("click", function(event) {
-        event.preventDefault();
-        if (isLoggedIn) {
-          // If logged in, redirect to the Data page
-          window.location.href = "./data.html";
-        } else {
-          // If not logged in, show the login modal
-          modal.style.display = "block";
+        // Handle the "Data" link click event
+        document.getElementById("dataLink").addEventListener("click", function(event) {
+          event.preventDefault();
+          if (isLoggedIn) {
+            // If logged in, redirect to the Data page
+            window.location.href = "./data.html";
+          } else {
+            // If not logged in, show the login modal
+            loginModal.show();
+          }
+        });
+
+        // Handle login button click event
+        loginBtn.onclick = async function() {
+          var email = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+
+          try {
+            const userCredential = await loginUser(email, password);
+            alert("Login berhasil!");
+            isLoggedIn = true; // Set logged in status
+            loginModal.hide(); // Close the modal after successful login
+            window.location.href = "./data.html"; // Redirect to the data page
+          } catch (error) {
+            // Login failed, show error message
+            errorMessage.textContent = "Gagal login: " + error.message;
+          }
         }
-      });
 
-      // Close modal when "x" is clicked
-      closeModal.onclick = function() {
-        modal.style.display = "none";
-      }
-
-      // Close modal when clicked outside of it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-
-      // Handle login
-      loginBtn.onclick = async function() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-
-        try {
-          const userCredential = await loginUser(email, password);
-          alert("Login berhasil!");
-          modal.style.display = "none";
-          isLoggedIn = true; // Set logged in status
-          window.location.href = "./data.html"; // Redirect to the data page
-        } catch (error) {
-          // Login failed, show error message
-          errorMessage.textContent = "Gagal login: " + error.message;
-        }
-      }
     </script>
 
   </body>
