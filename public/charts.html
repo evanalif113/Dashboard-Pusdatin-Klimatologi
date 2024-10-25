@@ -6,15 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!--reference for favicon-->
     <link rel="icon" type="image/png" href="./Logo.png">
-    <title>Weather Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module" src="./script/chart.js"></script>
-    <link rel="stylesheet" href="./style/chart.css">
+    <link rel="stylesheet" type="text/css" href="./style/chart.css">
+    <title>Pusat Data Iklim Jerukagung Seismologi</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Dashboard Time Series</h1>
+    <div class="topnav">
+        <a href="./index.html">Home</a>
+        <a href="./research.html">Research</a>
+        <a href="#" id="dataLink">Data</a>
+        <a href="./team.html">Our Team</a>
+        <a href="./contact.html">Contact</a>
+        <a class="active">More</a>
+    </div>
+    <div class="chart-container">
         <div id="temperature-chart" class="chart-container"></div>
         <div id="humidity-chart" class="chart-container"></div>
         <div id="dew-chart" class="chart-container"></div>

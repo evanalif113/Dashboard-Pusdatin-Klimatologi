@@ -1,7 +1,72 @@
+html {
+  scroll-behavior: smooth;
+  user-select: none; /* Standard syntax */
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0065b8; 
+}
+
+/* The navbar */
+.topnav {
+  background: linear-gradient(90deg, #fb8500, #007bff, #009519); /* Warna jingga, biru, dan hijau */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  overflow: hidden;
+  font-size: 25px;
+  height: 60px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 0 24px;
+  position: fixed; /* Tetap terlihat saat menggulir */
+  width: 100%;
+  top: 0; /* Posisi di bagian atas */
+  left: 0;
+  z-index: 1000; /* Menjaga agar navbar berada di atas konten lain */
+}
+
+/* Navbar links */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a.active {
+  background-color: #0473aa;
+  color: white;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
   color: #333;
+  margin-top: 60px; /* Memberi ruang agar konten tidak tertutup oleh navbar */
 }
 
 .charts-container {
