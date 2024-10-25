@@ -1,69 +1,64 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+// chart.js
+import { app } from './fireconfig.js';  // Impor app dari fireconfig.js
+import { getDatabase, ref, query, orderByKey, limitToLast, get } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// Inisialisasi Realtime Database
+const database = getDatabase(app);
 const databaseUrl = "https://staklimjerukagung-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
 // ID sensor tetap sebagai id-03
 const sensorId = "id-03";
 
-// Maximum length for the data array (e.g., 60 data points)
+// Maksimal panjang array data (misalnya, 60 data poin)
 var maxDataLength = 60;
 
-// Initialize empty arrays for storing data
+// Inisialisasi array kosong untuk menyimpan data
 var timestamps = [];
 var temperatures = [];
 var humidity = [];
 var pressure = [];
 var dew = [];
 
-// Function to fetch the last data using jQuery Ajax
+// Fungsi untuk mengambil data terbaru menggunakan Firebase Realtime Database
 function fetchLastData() {
     var hour = 1;
     var fetchCount = hour * 60;
-    var dataRef = `${databaseUrl}auto_weather_stat/${sensorId}/data.json?orderBy="$key"&limitToLast=${fetchCount}`;
+    var dataRef = query(ref(database, `auto_weather_stat/${sensorId}/data`), orderByKey(), limitToLast(fetchCount));
 
-    $.ajax({
-        url: dataRef,
-        type: "GET",
-        success: function(data) {
-            if (data) {
-                Object.values(data).forEach(entry => {
-                    // Convert timestamp to formatted time
-                    var timeFormatted = new Date(entry.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    get(dataRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            Object.values(data).forEach(entry => {
+                // Konversi timestamp ke waktu terformat
+                var timeFormatted = new Date(entry.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
 
-                    // Update arrays with new data (shift array when data exceeds max length)
-                    updateDataArray(timestamps, timeFormatted);
-                    updateDataArray(temperatures, entry.temperature);
-                    updateDataArray(humidity, entry.humidity);
-                    updateDataArray(pressure, entry.pressure);
-                    updateDataArray(dew, entry.dew);
-                });
+                // Update array dengan data baru (geser array ketika data melebihi panjang maksimum)
+                updateDataArray(timestamps, timeFormatted);
+                updateDataArray(temperatures, entry.temperature);
+                updateDataArray(humidity, entry.humidity);
+                updateDataArray(pressure, entry.pressure);
+                updateDataArray(dew, entry.dew);
+            });
 
-                // Update charts with the new data
-                updateCharts();
-            } else {
-                console.warn("Tidak ada data yang tersedia.");
-            }
-        },
-        error: function(error) {
-            console.error("Error fetching data: ", error);
+            // Update chart dengan data baru
+            updateCharts();
+        } else {
+            console.warn("Tidak ada data yang tersedia.");
         }
+    }).catch((error) => {
+        console.error("Error fetching data: ", error);
     });
 }
 
-// Function to update data arrays with a maximum length of 60
+// Fungsi untuk mengupdate array data dengan panjang maksimal 60
 function updateDataArray(array, newValue) {
     if (array.length >= maxDataLength) {
-        array.shift();  // Remove the first element
+        array.shift();  // Hapus elemen pertama
     }
-    array.push(newValue);  // Add the new value at the end
+    array.push(newValue);  // Tambahkan nilai baru di akhir
 }
 
-// Function to plot temperature chart
+// Fungsi untuk menampilkan chart suhu
 function plotTemperatureChart() {
     var trace = {
         x: timestamps,
@@ -84,7 +79,7 @@ function plotTemperatureChart() {
     Plotly.newPlot('temperature-chart', [trace], layout);
 }
 
-// Function to plot humidity chart
+// Fungsi untuk menampilkan chart kelembapan
 function plotHumidityChart() {
     var trace = {
         x: timestamps,
@@ -105,7 +100,7 @@ function plotHumidityChart() {
     Plotly.newPlot('humidity-chart', [trace], layout);
 }
 
-// Function to plot dew point chart
+// Fungsi untuk menampilkan chart titik embun
 function plotDewChart() {
     var trace = {
         x: timestamps,
@@ -126,7 +121,7 @@ function plotDewChart() {
     Plotly.newPlot('dew-chart', [trace], layout);
 }
 
-// Function to plot pressure chart
+// Fungsi untuk menampilkan chart tekanan
 function plotPressureChart() {
     var trace = {
         x: timestamps,
@@ -147,7 +142,7 @@ function plotPressureChart() {
     Plotly.newPlot('pressure-chart', [trace], layout);
 }
 
-// Function to update charts dynamically
+// Fungsi untuk mengupdate chart secara dinamis
 function updateCharts() {
     var data_update_temp = { 
         x: [timestamps], 
@@ -182,5 +177,5 @@ $(document).ready(function() {
     plotDewChart();
 
     fetchLastData();
-    setInterval(fetchLastData, 30000); // Fetch new data every...
+    setInterval(fetchLastData, 30000); // Fetch new data every 30 seconds
 });

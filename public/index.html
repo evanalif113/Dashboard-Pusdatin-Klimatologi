@@ -25,7 +25,7 @@
         <div class="topnav">
           <a class="active">Home</a>
           <a href="./404.html">Research</a>
-          <a href="./data.html">Data</a>
+          <a href="#" id="dataLink">Data</a>
           <a href="./team.html">Our Team</a>
           <a href="./contact.html">Contact</a>
           <a href="./charts.html">More</a>
@@ -34,91 +34,72 @@
       <h1 class="mainpagetext">Selamat Datang di Pusat Data Iklim Jerukagung</h1>
       <p class="mainpagetext">Penelitian dan Pengembangan Stasiun Iklim Jerukagung Seismologi</p>
     </div>
-    <!-- Stasiun Iklim Jerukagung-->
-    <div class="dashboard" id="stasiun-1">
-      <div class="stasiun-title">
-        <img src="./logo.png" style="height: 50px; margin-right: 10px;">
-        Stasiun Riset Meteorologi Jerukagung
-      </div>
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        Pemantauan iklim dan kondisi cuaca secara real-time untuk mendukung penelitian dinamika atmosfer di Jerukagung.
-      </p>
-      <div class="iframe-container">
-        <iframe src="https://thingspeak.com/channels/1733232/charts/1?bgcolor=%23ffffff&color=%2300b3b3&dynamic=true&results=60&title=Suhu Lingkungan&type=spline&xaxis=Time&yaxis=Suhu Lingkungan+%28%C2%B0C%29"></iframe>
-        <iframe src="https://thingspeak.com/channels/1733232/charts/2?bgcolor=%23ffffff&color=%230fa67e&dynamic=true&results=60&title=Kelembapan Relatif&type=spline&xaxis=Time&yaxis=Kelembapan Relatif+%28%25%29"></iframe>
-        <iframe src="https://thingspeak.com/channels/1733232/charts/3?bgcolor=%23ffffff&color=%23f68923&dynamic=true&results=60&round=5&title=Tekanan Udara&type=spline&xaxis=Time&yaxis=Tekanan Udara+%28hPa%29"></iframe>
+    <!-- Pop-up Login -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Login</h2>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="loginBtn">Login</button>
+        <p id="error-message" style="color: red;"></p>
       </div>
     </div>
-    <!-- Stasiun Riset Klimatologi Jerukagung -->
-    <div class="dashboard" id="stasiun-2">
-      <div class="stasiun-title">
-        <img src="./logo.png" style="height: 50px; margin-right: 10px;">
-        Stasiun Riset Klimatologi Jerukagung
-      </div>
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        Pemantauan iklim dan kondisi cuaca secara real-time untuk mendukung penelitian Agroklimat di Jerukagung.
-      </p>
-      <div class="iframe-container">
-        <iframe src="https://thingspeak.com/channels/2326256/charts/1?bgcolor=%23ffffff&color=%2300b3b3&dynamic=true&results=60&title=Suhu+Lingkungan&type=spline"></iframe>
-        <iframe src="https://thingspeak.com/channels/2326256/charts/2?bgcolor=%23ffffff&color=%230fa67e&dynamic=true&results=60&title=Kelembapan+Relatif&type=spline"></iframe>
-        <iframe src="https://thingspeak.com/channels/2326256/charts/3?bgcolor=%23ffffff&color=%23f68923&dynamic=true&results=60&title=Tekanan+Udara&type=spline"></iframe>
-      </div>
-      <p style="font-size: 16px; margin-bottom: 20px;">
-        Grafik Harian
-      </p>
-      <div class="iframe-container">
-        <iframe width="auto" height="auto" style="border: 1px solid #cccccc;" src="https://thingspeak.com/apps/matlab_visualizations/553924"></iframe>
-        <iframe width="auto" height="auto" style="border: 1px solid #cccccc;" src="https://thingspeak.com/apps/matlab_visualizations/553926"></iframe>
-        <iframe width="auto" height="auto" style="border: 1px solid #cccccc;" src="https://thingspeak.com/apps/matlab_visualizations/553930"></iframe>
-      </div>
-      <div class="rata-rata" id="rata-rata-suhu3"></div>
-      <div class="rata-rata" id="rata-rata-kelembaban3"></div>
-      <div class="rata-rata" id="rata-rata-tekanan3"></div>
-    </div>
-    <script>
-      // mengambil data
-  function meanThingspeak(channelID, fieldNumber, numResults, resultElementId, dataType) {
-  const apiKey = '6NPQMVGO26LY3UCP'; 
-  const url = `https://api.thingspeak.com/channels/${channelID}/fields/${fieldNumber}.json?api_key=${apiKey}&results=${numResults}`;
-  
-  let dataTypeText;
-  switch (dataType) {
-    case 1:
-      dataTypeText = "Suhu";
-      break;
-    case 2:
-      dataTypeText = "Kelembapan";
-      break;
-    case 3:
-      dataTypeText = "Tekanan Udara";
-      break;
-    default:
-      dataTypeText = "Data";
-  }
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.feeds && data.feeds.length > 0) {
-        const fieldValues = data.feeds.map((feed) => parseFloat(feed[`field${fieldNumber}`]));
-        const rataRata = fieldValues.reduce((total, value) => total + value, 0) / fieldValues.length;
+    <script type="module">
+      import { loginUser } from './script/auth.js';
 
-        // Tampilkan rata-rata data
-        const rataRataElement = document.getElementById(resultElementId);
-        rataRataElement.textContent = `Rata-rata Data ${dataTypeText}: ${rataRata.toFixed(2)}`;
+      // Check if the user is logged in
+      let isLoggedIn = false;
+
+      // Get modal elements
+      var modal = document.getElementById("loginModal");
+      var closeModal = document.getElementsByClassName("close")[0];
+      var loginBtn = document.getElementById("loginBtn");
+      var errorMessage = document.getElementById("error-message");
+
+      // Handle the "Data" link click event
+      document.getElementById("dataLink").addEventListener("click", function(event) {
+        event.preventDefault();
+        if (isLoggedIn) {
+          // If logged in, redirect to the Data page
+          window.location.href = "./data.html";
+        } else {
+          // If not logged in, show the login modal
+          modal.style.display = "block";
+        }
+      });
+
+      // Close modal when "x" is clicked
+      closeModal.onclick = function() {
+        modal.style.display = "none";
       }
-    })
-    .catch((error) => {
-      console.error('Gagal mengambil data Thingspeak:', error);
-    });
-}
 
-// panggil rata rata
-meanThingspeak(2326256, 1, 60, 'rata-rata-suhu3', 1);
-meanThingspeak(2326256, 2, 60, 'rata-rata-kelembaban3', 2);
-meanThingspeak(2326256, 3, 60, 'rata-rata-tekanan3', 3);
+      // Close modal when clicked outside of it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
 
+      // Handle login
+      loginBtn.onclick = async function() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        try {
+          const userCredential = await loginUser(email, password);
+          alert("Login berhasil!");
+          modal.style.display = "none";
+          isLoggedIn = true; // Set logged in status
+          window.location.href = "./data.html"; // Redirect to the data page
+        } catch (error) {
+          // Login failed, show error message
+          errorMessage.textContent = "Gagal login: " + error.message;
+        }
+      }
     </script>
+
   </body>
   <footer>
     <button type="button" class="btn btn-success" style="font-size: 18px" 
