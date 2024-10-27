@@ -1,39 +1,44 @@
+Berikut adalah terjemahan README.md ke dalam Bahasa Indonesia:
+
+---
+
 # Pusat Data Iklim Jerukagung Seismologi
 
-## Overview
+## Ikhtisar
 
 <p align="center">
   <img src="./public/Logo.png" alt="Logo" width="150"/>
 </p>
 
-Pusat Data Iklim Jerukagung Seismologi is a web application designed to display and analyze climate data from various meteorological stations in Jerukagung. This application integrates data from ThingSpeak for real-time monitoring and Firebase for data management. It provides visualizations and statistical summaries of environmental data.
+Pusat Data Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk menampilkan dan menganalisis data iklim dari berbagai stasiun meteorologi di Jerukagung. Aplikasi ini mengintegrasikan data dari ThingSpeak untuk pemantauan waktu nyata dan Firebase untuk manajemen data. Aplikasi ini menyediakan visualisasi dan ringkasan statistik dari data lingkungan.
 
-## Features
+## Fitur
 
-- Real-time climate data visualization using ThingSpeak.
-- Average calculations of climate data.
-- Dynamic charts and statistics for meteorological research.
-- Local Weather Analysis
+- Visualisasi data iklim waktu nyata menggunakan ThingSpeak.
+- Perhitungan rata-rata dari data iklim.
+- Grafik dan statistik dinamis untuk penelitian meteorologi.
+- Analisis Cuaca Lokal
 
-## Technologies Used
+## Teknologi yang Digunakan
 
-- **HTML/CSS**: Structure and styling of the web application.
-- **JavaScript**: Data handling, charting, and Firebase integration.
-- **Bootstrap**: Responsive design framework.
-- **Plotly.js**: For advanced charting.
-- **Firebase**: For real-time database management and analytics.
-- **ThingSpeak**: For fetching cloud computing.
+- **HTML/CSS**: Struktur dan gaya dari aplikasi web.
+- **JavaScript**: Pengelolaan data, charting, dan integrasi Firebase.
+- **Bootstrap**: Framework untuk desain responsif.
+- **Plotly.js**: Untuk charting yang canggih.
+- **Firebase**: Untuk manajemen basis data waktu nyata dan analitik.
+- **ThingSpeak**: Untuk pengambilan data melalui komputasi awan.
 
-## Usage
+## Penggunaan
 
-- **Home Page**: Displays an overview and links to different sections.
-- **Research**: Displays our research progress.
--
+- **Halaman Utama**: Menampilkan ikhtisar dan tautan ke berbagai bagian.
+- **Penelitian**: Menampilkan perkembangan penelitian kami.
 
-## Contact
+## Kontak
 
-For questions or issues, please contact [Jerukagung Seismologi](mailto:evanalifwidhyatma@gmail.com).
+Untuk pertanyaan atau masalah, silakan hubungi [Jerukagung Seismologi](mailto:evanalifwidhyatma@gmail.com).
 
-## License
+## Lisensi
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
+
+---
