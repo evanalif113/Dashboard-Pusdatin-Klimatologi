@@ -4,7 +4,7 @@
 ## Ikhtisar
 
 <p align="center">
-  <img src="./public/Logo.png" alt="Logo" width="150"/>
+  <img src="./public/img/logo.png" alt="Logo" width="150"/>
 </p>
 
 Pusat Data Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk menampilkan dan menganalisis data iklim dari berbagai stasiun meteorologi di Jerukagung. Aplikasi ini mengintegrasikan data dari ThingSpeak untuk pemantauan waktu nyata dan Firebase untuk manajemen data. Aplikasi ini menyediakan visualisasi dan ringkasan statistik dari data lingkungan.
