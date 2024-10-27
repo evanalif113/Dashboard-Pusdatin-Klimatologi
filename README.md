@@ -1,6 +1,3 @@
-Berikut adalah terjemahan README.md ke dalam Bahasa Indonesia:
-
----
 
 # Pusat Data Iklim Jerukagung Seismologi
 
