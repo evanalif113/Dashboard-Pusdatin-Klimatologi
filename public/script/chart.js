@@ -18,6 +18,7 @@ var temperatures = [];
 var humidity = [];
 var pressure = [];
 var dew = [];
+var volt = [];
 
 // Fungsi untuk mengambil data terbaru menggunakan Firebase Realtime Database
 function fetchLastData() {
@@ -38,6 +39,7 @@ function fetchLastData() {
                 updateDataArray(humidity, entry.humidity);
                 updateDataArray(pressure, entry.pressure);
                 updateDataArray(dew, entry.dew);
+                updateDataArray(volt, entry.volt);
             });
 
             // Update chart dengan data baru
@@ -142,6 +144,26 @@ function plotPressureChart() {
     Plotly.newPlot('pressure-chart', [trace], layout);
 }
 
+function plotVoltChart() {
+    var trace = {
+        x: timestamps,
+        y: volt,
+        type: 'scatter',
+        mode: 'lines+markers',
+        name: 'Tegangan (V)',
+        line: { color: 'FFC300' }
+    };
+
+    var layout = {
+        title: 'Tegangan (V)',
+        xaxis: { title: 'Waktu' },
+        yaxis: { title: 'Tegangan (V)' },
+        height: 400
+    };
+
+    Plotly.newPlot('volt-chart', [trace], layout);
+}
+
 // Fungsi untuk mengupdate chart secara dinamis
 function updateCharts() {
     var data_update_temp = { 
@@ -167,6 +189,12 @@ function updateCharts() {
         y: [dew] 
     };
     Plotly.update('dew-chart', data_update_dew);
+
+    var data_update_volt = { 
+        x: [timestamps], 
+        y: [volt] 
+    };
+    Plotly.update('volt-chart', data_update_volt);
 }
 
 // Fetch data initially and set intervals for every minute
@@ -175,6 +203,7 @@ $(document).ready(function() {
     plotHumidityChart();
     plotPressureChart();
     plotDewChart();
+    plotVoltChart();
 
     fetchLastData();
     setInterval(fetchLastData, 30000); // Fetch new data every 30 seconds
