@@ -11,10 +11,10 @@ Pusat Data Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk 
 
 ## Fitur
 
-- Visualisasi data iklim waktu nyata menggunakan ThingSpeak.
+- Visualisasi data iklim menggunakan Plotly.js.
 - Perhitungan rata-rata dari data iklim.
 - Grafik dan statistik dinamis untuk penelitian meteorologi.
-- Analisis Cuaca Lokal
+- Analisis Meteorologi Lokal
 
 ## Teknologi yang Digunakan
 
@@ -23,7 +23,7 @@ Pusat Data Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk 
 - **Bootstrap**: Framework untuk desain responsif.
 - **Plotly.js**: Untuk charting yang canggih.
 - **Firebase**: Untuk manajemen basis data waktu nyata dan analitik.
-- **ThingSpeak**: Untuk pengambilan data melalui komputasi awan.
+- **ThingSpeak**: Untuk melakukan komputasi awan.
 
 ## Penggunaan
 
