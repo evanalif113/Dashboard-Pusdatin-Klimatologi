@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "jslint": "^0.12.1"
+  },
+  "scripts": {
+    "build": "echo \"Build command executed.\""
   }
 }
