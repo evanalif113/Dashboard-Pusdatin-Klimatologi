@@ -4,7 +4,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebas
 
 // Konfigurasi Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyDalcCwwOthPMjC3umkpQECqlQQj699FTY",
+    apiKey: `${process.env.API_KEY}`,
     authDomain: "staklimjerukagung.firebaseapp.com",
     databaseURL: "https://staklimjerukagung-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "staklimjerukagung",
