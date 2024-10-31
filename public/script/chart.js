@@ -1,5 +1,5 @@
 // chart.js
-import app from './fireconfig.js';  // Impor app dari fireconfig.js
+import app from './config.js';  // Impor app dari fireconfig.js
 import { getDatabase, ref, query, orderByKey, limitToLast, get } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 // Inisialisasi Realtime Database
