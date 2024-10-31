@@ -3,18 +3,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/fireba
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
 
 // Konfigurasi Firebase
-// firebaseConfig.js
-export const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.FIREBASE_DATABASE_URL,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID,
-  };
-  
+const firebaseConfig = {
+    apiKey: "AIzaSyDalcCwwOthPMjC3umkpQECqlQQj699FTY",
+    authDomain: "staklimjerukagung.firebaseapp.com",
+    databaseURL: "https://staklimjerukagung-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "staklimjerukagung",
+    storageBucket: "staklimjerukagung.appspot.com",
+    messagingSenderId: "763003005982",
+    appId: "1:763003005982:web:8ce295eda92c6b9112d20f",
+    measurementId: "G-DRL05TMRNT"
+};
 
 // Inisialisasi Firebase App
 const app = initializeApp(firebaseConfig);

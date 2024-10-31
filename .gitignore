@@ -4,3 +4,6 @@
 firebase-debug.log
 node_modules/
 Dashboard-Pusdatin-Klimatologi.code-workspace
+.github/workflows/firebase-hosting-merge.yml
+.github/workflows/firebase-hosting-pull-request.yml
+public/script/fireconfig.js
