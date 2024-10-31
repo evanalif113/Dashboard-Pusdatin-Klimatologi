@@ -11,7 +11,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Sesuaikan dengan versi yang Anda butuhkan
+          node-version: '18.x'  # Sesuaikan dengan versi yang Anda butuhkan
       - run: npm install
       - name: Build project
         run: npm run build
