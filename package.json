@@ -1,8 +1,8 @@
 {
+  "scripts": {
+    "build": "echo 'Running build command'"
+  },
   "dependencies": {
     "jslint": "^0.12.1"
-  },
-  "scripts": {
-    "build": "webpack --mode production"
   }
 }
