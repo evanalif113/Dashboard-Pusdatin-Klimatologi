@@ -1,5 +1,5 @@
 // auth.js
-import app from './fireconfig.js';  // Impor app dari fireconfig.js
+import app from './config.js';  // Impor app dari fireconfig.js
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 // Inisialisasi Auth
