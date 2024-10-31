@@ -4,7 +4,6 @@ import { getDatabase, ref, query, orderByKey, limitToLast, get } from "https://w
 
 // Inisialisasi Realtime Database
 const database = getDatabase(app);
-const databaseUrl = "https://staklimjerukagung-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
 // ID sensor tetap sebagai id-03
 const sensorId = "id-03";
