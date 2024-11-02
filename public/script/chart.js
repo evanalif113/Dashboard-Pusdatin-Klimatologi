@@ -163,7 +163,7 @@ function plotVoltChart() {
     Plotly.newPlot('volt-chart', [trace], layout);
 }
 
-function plotTempHumiHist() {
+function plotTempHumiScatter() {
     var trace1 = {
         x: temperatures,
         y: humidity,
@@ -180,7 +180,36 @@ function plotTempHumiHist() {
     };
 
     var data = [trace1];
-    Plotly.newPlot('hist-chart', data, layout);
+    Plotly.newPlot('scatter-chart', data, layout);
+}
+
+function plotStacked() {
+    var trace1 = {
+        x: timestamps,
+        y: temperatures,
+        type: 'scatter',
+        mode: 'markers',
+        name: 'Suhu'
+      };
+      
+      var trace2 = {
+        x: timestamps,
+        y: dew,
+        type: 'scatter',
+        mode: 'markers',
+        name: 'Titik Embun'
+      };
+      
+      var data = [trace1, trace2];
+      
+      var layout = {
+        title: 'Scatter Suhu dan Titik Embun',
+        xaxis: { title: 'Waktu' },
+        yaxis: { title: 'Suhu' },
+        height: 400
+    };
+      
+      Plotly.newPlot('stacked-chart', data, layout);
 }
 
 // Fungsi untuk mengupdate chart secara dinamis
@@ -215,11 +244,17 @@ function updateCharts() {
     };
     Plotly.update('volt-chart', data_update_volt);
 
-    var data_update_hist = { 
-        y1: [temperatures],
-        y2: [dew]
+    var data_update_scatter = { 
+        x: [temperatures],
+        y: [humidity]
     };
-    Plotly.update('hist-chart', data_update_hist);
+    Plotly.update('scatter-chart', data_update_scatter);
+
+    var data_update_stacked = { 
+        x: [timestamps],
+        y: [temperatures, dew]
+    };
+    Plotly.update('stacked-chart', data_update_stacked);
 }
 
 // Fetch data initially and set intervals for every minute
@@ -229,7 +264,8 @@ $(document).ready(function() {
     plotPressureChart();
     plotDewChart();
     plotVoltChart();
-    plotTempHumiHist();
+    plotTempHumiScatter();
+    plotStacked();
 
     fetchLastData();
     setInterval(fetchLastData, 30000); // Fetch new data every 30 seconds
