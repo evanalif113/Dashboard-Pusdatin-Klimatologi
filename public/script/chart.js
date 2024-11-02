@@ -163,6 +163,26 @@ function plotVoltChart() {
     Plotly.newPlot('volt-chart', [trace], layout);
 }
 
+function plotTempHumiHist() {
+    var trace1 = {
+        x: temperatures,
+        y: humidity,
+        mode: 'markers',
+        type: 'scatter',
+        marker: { color: '#15B392' }
+    };
+
+    var layout = {
+        title: 'Scatter Suhu dan Kelembapan',
+        xaxis: { title: 'Kelembapan' },
+        yaxis: { title: 'Suhu' },
+        height: 400
+    };
+
+    var data = [trace1];
+    Plotly.newPlot('hist-chart', data, layout);
+}
+
 // Fungsi untuk mengupdate chart secara dinamis
 function updateCharts() {
     var data_update_temp = { 
@@ -194,6 +214,12 @@ function updateCharts() {
         y: [volt] 
     };
     Plotly.update('volt-chart', data_update_volt);
+
+    var data_update_hist = { 
+        y1: [temperatures],
+        y2: [dew]
+    };
+    Plotly.update('hist-chart', data_update_hist);
 }
 
 // Fetch data initially and set intervals for every minute
@@ -203,6 +229,7 @@ $(document).ready(function() {
     plotPressureChart();
     plotDewChart();
     plotVoltChart();
+    plotTempHumiHist();
 
     fetchLastData();
     setInterval(fetchLastData, 30000); // Fetch new data every 30 seconds
