@@ -25,11 +25,6 @@ Pusat Data Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk 
 - **Firebase**: Untuk manajemen basis data waktu nyata dan analitik.
 - **ThingSpeak**: Untuk melakukan komputasi awan.
 
-## Penggunaan
-
-- **Halaman Utama**: Menampilkan ikhtisar dan tautan ke berbagai bagian.
-- **Penelitian**: Menampilkan perkembangan penelitian kami.
-
 ## Kontak
 
 Untuk pertanyaan atau masalah, silakan hubungi [Jerukagung Seismologi](mailto:evanalifwidhyatma@gmail.com).
