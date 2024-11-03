@@ -3,6 +3,7 @@
     "build": "echo 'Running build command'"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "jslint": "^0.12.1"
   }
 }

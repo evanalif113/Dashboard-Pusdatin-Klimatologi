@@ -78,15 +78,9 @@ body {
   margin-top: 60px; /* Memberi ruang agar konten tidak tertutup oleh navbar */
 }
 
-.charts-container {
-  width: 96%;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 10px; /* Menambahkan properti border-radius */
-}
-
 .chart-container {
   margin-bottom: 50px;
+  position: relative;
 }
 
 h1 {
