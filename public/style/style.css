@@ -55,3 +55,46 @@ html {
   color: white; 
 }
 
+/* Custom styles for nav-underline */
+.custom-nav .nav-link {
+  color: #000000; /* Warna teks link navbar */
+  border-bottom: 2px solid #F7A500; /* Warna underline */
+}
+
+.custom-nav .nav-link:hover {
+  color: #F7A500; /* Warna teks link navbar saat di-hover */
+}
+
+.custom-nav .nav-link.active {
+  color: #73B842; /* Warna teks link aktif */
+  border-bottom: 2px solid #04A9D2; /* Warna underline link aktif */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .mainpage {
+    padding: 150px; /* Kurangi padding pada layar kecil */
+  }
+
+  .mainpagetext {
+    font-size: 2em; /* Kurangi ukuran font pada layar kecil */
+  }
+
+  .navbar .nav-link {
+    font-size: 1em; /* Kurangi ukuran font link navbar pada layar kecil */
+  }
+}
+
+@media (max-width: 480px) {
+  .mainpage {
+    padding: 100px; /* Kurangi padding lebih lanjut pada layar sangat kecil */
+  }
+
+  .mainpagetext {
+    font-size: 1.5em; /* Kurangi ukuran font lebih lanjut pada layar sangat kecil */
+  }
+
+  .navbar .nav-link {
+    font-size: 0.9em; /* Kurangi ukuran font link navbar lebih lanjut pada layar sangat kecil */
+  }
+}
