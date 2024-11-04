@@ -18,46 +18,36 @@
 </head>
 <body>
   <!--NAVBAR-->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="./index.html">
         <img src="./img/logo.png" alt="logo" width="50" height="50" class="d-inline-block align-text-top">
       </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav nav-underline custom-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="./index.html">
-              Beranda
-            </a>
+            <a class="nav-link" aria-current="page" href="./index.html">Beranda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./riset.html">
-              Riset
-            </a>
+            <a class="nav-link" href="./riset.html">Riset</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./timkami.html">
-              Tim Kami
-            </a>
+            <a class="nav-link" href="./timkami.html">Tim Kami</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./data.html">
-              Data
-            </a>
+            <a class="nav-link" href="./data.html">Data</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="./grafik.html">
-              Grafik
-            </a>
+            <a class="nav-link active" href="./grafik.html">Grafik</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Pencarian..." aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Cari</button>
-        </form>
       </div>
     </div>
   </nav>
+  <!--Konten lainnya-->
     <div class="container-fluid">
         <div id="temperature-chart" class="chart-container"></div>
         <div id="humidity-chart" class="chart-container"></div>
