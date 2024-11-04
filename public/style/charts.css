@@ -1,28 +1,3 @@
-html {
-  scroll-behavior: smooth;
-  user-select: none; /* Standard syntax */
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #0065b8; 
-}
-
 /* The navbar */
 .topnav {
   background: linear-gradient(90deg, #004D9D, #F7A500,#73B842, #04A9D2);
@@ -40,42 +15,6 @@ html {
   top: 0; /* Posisi di bagian atas */
   left: 0;
   z-index: 1000; /* Menjaga agar navbar berada di atas konten lain */
-}
-
-/* Logo styling */
-.topnav .logo {
-  height: 50px; /* Sesuaikan tinggi logo */
-  margin-left: auto; /* Mengatur margin kiri otomatis untuk memindahkan logo ke kanan */
-  margin-right: 20px; /* Jarak antara logo dan tepi navbar */
-  align-self: center; /* Menjaga logo agar berada di tengah vertikal navbar */
-}
-
-/* Navbar links */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 20px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a.active {
-  background-color: #0473aa;
-  color: white;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: url(../img/trianglify.png);
-  background-size: fill;
-  color: #333;
-  margin-top: 60px; /* Memberi ruang agar konten tidak tertutup oleh navbar */
 }
 
 .chart-container {
