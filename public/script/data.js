@@ -61,4 +61,8 @@ function loadWeatherData() {
 }
 
 // Muat data saat halaman siap
-document.addEventListener('DOMContentLoaded', loadWeatherData);
+document.addEventListener('DOMContentLoaded', () => {
+    loadWeatherData(); // Panggil pertama kali saat halaman dimuat
+    // Perbarui data setiap 1 menit (60000 milidetik)
+    setInterval(loadWeatherData, 60000);
+});
