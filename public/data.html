@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="module" src="./script/data.js"></script>
     <link rel="stylesheet" type="text/css" href="./style/style.css">
     <title>Pusat Data Iklim Jerukagung Seismologi</title>
 </head>
@@ -45,47 +46,23 @@
 </nav>
 <!--KONTEN-->
 <div class="container my-5">
-  <h2 class="text-center mb-4">Data Cuaca</h2>
+  <h2 class="text-center mb-4">Datalogger</h2>
   <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Tanggal</th>
-          <th scope="col">Suhu (°C)</th>
-          <th scope="col">Kelembapan (%)</th>
-          <th scope="col">Tekanan (hPa)</th>
-          <th scope="col">Dew Point (°C)</th>
-          <th scope="col">Volt (V)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2024-11-01</td>
-          <td>30</td>
-          <td>70</td>
-          <td>1013</td>
-          <td>20</td>
-          <td>3.3</td>
-        </tr>
-        <tr>
-          <td>2024-11-02</td>
-          <td>31</td>
-          <td>65</td>
-          <td>1010</td>
-          <td>21</td>
-          <td>3.2</td>
-        </tr>
-        <tr>
-          <td>2024-11-03</td>
-          <td>29</td>
-          <td>75</td>
-          <td>1012</td>
-          <td>19</td>
-          <td>3.1</td>
-        </tr>
-        <!-- Tambahkan baris data sesuai kebutuhan -->
-      </tbody>
-    </table>
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th scope="col">Tanggal</th>
+                  <th scope="col">Suhu (°C)</th>
+                  <th scope="col">Kelembapan (%)</th>
+                  <th scope="col">Tekanan (hPa)</th>
+                  <th scope="col">Dew Point (°C)</th>
+                  <th scope="col">Volt (V)</th>
+              </tr>
+          </thead>
+          <tbody id="datalogger">
+              <!-- Data akan ditambahkan di sini -->
+          </tbody>
+      </table>
   </div>
 </div>
 

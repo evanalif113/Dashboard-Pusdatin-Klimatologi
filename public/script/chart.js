@@ -30,7 +30,13 @@ function fetchLastData() {
             const data = snapshot.val();
             Object.values(data).forEach(entry => {
                 // Konversi timestamp ke waktu terformat
-                var timeFormatted = new Date(entry.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+                var timeFormatted = new Date(entry.timestamp * 1000)
+                                    .toLocaleTimeString([], { 
+                                        hour: '2-digit', 
+                                        minute: '2-digit', 
+                                        second: '2-digit', 
+                                        hour12: false 
+                                    });
 
                 // Update array dengan data baru (geser array ketika data melebihi panjang maksimum)
                 updateDataArray(timestamps, timeFormatted);
