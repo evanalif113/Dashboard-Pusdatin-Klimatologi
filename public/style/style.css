@@ -70,6 +70,15 @@ html {
   border-bottom: 2px solid #04A9D2; /* Warna underline link aktif */
 }
 
+.warming-stripes {
+  max-width: 100%;
+  /* Pengaturan cropping secara horizontal */
+  width: 100%; /* Lebar elemen tetap penuh */
+  height: 30px; /* Sesuaikan dengan tinggi yang diinginkan untuk cropping */
+  object-fit: cover; /* Memotong gambar agar sesuai elemen */
+  object-position: center; /* Posisikan gambar di tengah */
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .mainpage {
