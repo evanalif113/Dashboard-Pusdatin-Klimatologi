@@ -23,9 +23,13 @@ var volt = [];
 function fetchLastData() {
     var hour = 1;
     var fetchCount = hour * 60;
-    var dataRef = query(ref(database, `auto_weather_stat/${sensorId}/data`), orderByKey(), limitToLast(fetchCount));
+    var dataRef = query(ref(database, 
+        `auto_weather_stat/${sensorId}/data`), 
+        orderByKey(), 
+        limitToLast(fetchCount));
 
-    get(dataRef).then((snapshot) => {
+    get(dataRef)
+    .then((snapshot) => {
         if (snapshot.exists()) {
             const data = snapshot.val();
             Object.values(data).forEach(entry => {
