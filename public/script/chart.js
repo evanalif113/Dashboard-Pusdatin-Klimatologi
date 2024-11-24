@@ -98,7 +98,7 @@ function plotHumidityChart() {
         type: 'scatter',
         mode: 'lines+markers',
         name: 'Kelembapan Relatif (%)',
-        line: { color: '006BFF' }
+        line: { color: '15B392' }
     };
 
     var layout = {
