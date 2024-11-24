@@ -83,7 +83,7 @@ function plotTemperatureChart() {
         height: 400
     };
 
-    Plotly.newPlot('temperature-chart', [trace], layout);
+    Plotly.newPlot('temperature-chart', [trace], layout, { responsive: true });
 }
 
 // Fungsi untuk menampilkan chart kelembapan
@@ -104,7 +104,7 @@ function plotHumidityChart() {
         height: 400
     };
 
-    Plotly.newPlot('humidity-chart', [trace], layout);
+    Plotly.newPlot('humidity-chart', [trace], layout, { responsive: true });
 }
 
 // Fungsi untuk menampilkan chart titik embun
@@ -125,7 +125,7 @@ function plotDewChart() {
         height: 400
     };
 
-    Plotly.newPlot('dew-chart', [trace], layout);
+    Plotly.newPlot('dew-chart', [trace], layout, { responsive: true });
 }
 
 // Fungsi untuk menampilkan chart tekanan
@@ -146,7 +146,7 @@ function plotPressureChart() {
         height: 400
     };
 
-    Plotly.newPlot('pressure-chart', [trace], layout);
+    Plotly.newPlot('pressure-chart', [trace], layout, { responsive: true });
 }
 
 function plotVoltChart() {
@@ -166,7 +166,7 @@ function plotVoltChart() {
         height: 400
     };
 
-    Plotly.newPlot('volt-chart', [trace], layout);
+    Plotly.newPlot('volt-chart', [trace], layout, { responsive: true });
 }
 
 function plotTempHumiScatter() {
@@ -186,7 +186,7 @@ function plotTempHumiScatter() {
     };
 
     var data = [trace1];
-    Plotly.newPlot('scatter-chart', data, layout);
+    Plotly.newPlot('scatter-chart', data, layout, {responsive: true});
 }
 
 function plotStacked() {
@@ -215,7 +215,7 @@ function plotStacked() {
         height: 400
     };
       
-      Plotly.newPlot('stacked-chart', data, layout);
+      Plotly.newPlot('stacked-chart', data, layout, {responsive: true});
 }
 
 // Fungsi untuk mengupdate chart secara dinamis
