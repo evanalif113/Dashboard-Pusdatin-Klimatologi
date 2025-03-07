@@ -1,5 +1,5 @@
 
-# Pusat Data Iklim Jerukagung Seismologi
+# Sistem Informasi Iklim Jerukagung Seismologi
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14029028.svg)](https://doi.org/10.5281/zenodo.14029028)
 
@@ -9,7 +9,7 @@
   <img src="./public/img/logo.png" alt="Logo" width="150"/>
 </p>
 
-Pusat Data Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk menampilkan dan menganalisis data iklim dari berbagai stasiun meteorologi dari peralatan kebumian Jerukagung Seismologi. Aplikasi ini mengintegrasikan data dari database untuk manajemen data. Aplikasi ini menyediakan visualisasi dan ringkasan statistik dari data peralatan.
+Sistem Informasi Iklim Jerukagung Seismologi adalah aplikasi web yang dirancang untuk menampilkan dan menganalisis data iklim dari berbagai stasiun meteorologi dari peralatan kebumian Jerukagung Seismologi. Aplikasi ini mengintegrasikan data dari database untuk manajemen data, menyediakan visualisasi dan ringkasan statistik dari data peralatan.
 
 ## Fitur
 
